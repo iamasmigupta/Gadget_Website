@@ -3,7 +3,7 @@
 A **fully responsive Full Stack E-Commerce application** built with **Next.js, React, Stripe, and Sanity CMS**.
 This project includes **real payment integration, product management, and a modern UI with animations**.
 
-Deployed Website: 👉 [Live Demo](https://ecommerce-website-ddx155r56-asmi-guptas-projects.vercel.app/)
+Deployed Website: 👉 [Live Demo](https://gadgetmasteryhub.vercel.app/)
 
 
 ## 📌 About the Project
