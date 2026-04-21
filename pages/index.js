@@ -6,7 +6,9 @@ import { Product, FooterBanner, HeroBanner } from '../components';
 
 const Home = ({ products, bannerData }) => (
   <div>
-    <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
+    {bannerData && bannerData.length > 0 && (
+      <HeroBanner heroBanner={bannerData[0]} />
+    )}
     
     {/* Trust Badges */}
     <div className="trust-badges">
@@ -39,10 +41,16 @@ const Home = ({ products, bannerData }) => (
     </div>
 
     <div className="products-container">
-      {products?.map((product) => <Product key={product._id} product={product} />)}
+      {products?.length > 0 ? (
+        products.map((product) => <Product key={product._id} product={product} />)
+      ) : (
+        <p style={{ color: 'var(--text-muted)', fontSize: '18px' }}>No products yet. Add products in Sanity Studio.</p>
+      )}
     </div>
 
-    <FooterBanner footerBanner={bannerData && bannerData[0]} />
+    {bannerData && bannerData.length > 0 && (
+      <FooterBanner footerBanner={bannerData[0]} />
+    )}
   </div>
 );
 
@@ -54,7 +62,7 @@ export const getServerSideProps = async () => {
   const bannerData = await client.fetch(bannerQuery);
 
   return {
-    props: { products, bannerData }
+    props: { products: products || [], bannerData: bannerData || [] }
   }
 }
 

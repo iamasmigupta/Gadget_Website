@@ -26,7 +26,11 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+.env
 .env*.local
+export_data.js
+import_data.js
+sanity_data.json
 
 # vercel
 .vercel

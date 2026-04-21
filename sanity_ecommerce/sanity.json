@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "ecommerce"
+    "name": "JSM Gadget Store"
   },
   "api": {
-    "projectId": "vfxfwnaw",
+    "projectId": "ydo0gvs9",
     "dataset": "production"
   },
   "plugins": [
