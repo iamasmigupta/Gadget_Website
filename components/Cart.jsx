@@ -13,23 +13,14 @@ const Cart = () => {
   const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
 
   const handleCheckout = async () => {
-    const stripe = await getStripe();
-
-    const response = await fetch('/api/stripe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cartItems),
-    });
-
-    if(response.statusCode === 500) return;
+    toast.loading('Processing payment...');
     
-    const data = await response.json();
-
-    toast.loading('Redirecting...');
-
-    stripe.redirectToCheckout({ sessionId: data.id });
+    // Demo mode: simulate payment processing
+    setTimeout(() => {
+      toast.dismiss();
+      toast.success('Payment successful!');
+      window.location.href = '/success';
+    }, 1500);
   }
 
   return (
@@ -67,7 +58,7 @@ const Cart = () => {
               <div className="item-desc">
                 <div className="flex top">
                   <h5>{item.name}</h5>
-                  <h4>${item.price}</h4>
+                  <h4>&#8377;{item.price}</h4>
                 </div>
                 <div className="flex bottom">
                   <div>
@@ -75,7 +66,7 @@ const Cart = () => {
                     <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
                     <AiOutlineMinus />
                     </span>
-                    <span className="num" onClick="">{item.quantity}</span>
+                    <span className="num">{item.quantity}</span>
                     <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
                   </p>
                   </div>
@@ -95,11 +86,11 @@ const Cart = () => {
           <div className="cart-bottom">
             <div className="total">
               <h3>Subtotal:</h3>
-              <h3>${totalPrice}</h3>
+              <h3>&#8377;{totalPrice}</h3>
             </div>
             <div className="btn-container">
               <button type="button" className="btn" onClick={handleCheckout}>
-                Pay with PayPal
+                Pay with Stripe
               </button>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { BsShieldCheck, BsTruck, BsArrowRepeat } from 'react-icons/bs';
 
 import { client, urlFor } from '../../lib/client';
 import { Product } from '../../components';
@@ -12,7 +13,6 @@ const ProductDetails = ({ product, products }) => {
 
   const handleBuyNow = () => {
     onAdd(product, qty);
-
     setShowCart(true);
   }
 
@@ -21,7 +21,7 @@ const ProductDetails = ({ product, products }) => {
       <div className="product-detail-container">
         <div>
           <div className="image-container">
-            <img src={urlFor(image && image[index])} className="product-detail-image" />
+            <img src={urlFor(image && image[index])} className="product-detail-image" alt={name} />
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
@@ -30,6 +30,7 @@ const ProductDetails = ({ product, products }) => {
                 src={urlFor(item)}
                 className={i === index ? 'small-image selected-image' : 'small-image'}
                 onMouseEnter={() => setIndex(i)}
+                alt={`${name} view ${i + 1}`}
               />
             ))}
           </div>
@@ -45,13 +46,27 @@ const ProductDetails = ({ product, products }) => {
               <AiFillStar />
               <AiOutlineStar />
             </div>
-            <p>
-              (20)
-            </p>
+            <p>(20 Reviews)</p>
           </div>
           <h4>Details: </h4>
           <p>{details}</p>
-          <p className="price">${price}</p>
+          <p className="price">&#8377;{price}</p>
+
+          <div className="product-features">
+            <div className="feature-item">
+              <BsTruck className="feature-icon" />
+              <span>Free Delivery</span>
+            </div>
+            <div className="feature-item">
+              <BsArrowRepeat className="feature-icon" />
+              <span>7-Day Returns</span>
+            </div>
+            <div className="feature-item">
+              <BsShieldCheck className="feature-icon" />
+              <span>1 Year Warranty</span>
+            </div>
+          </div>
+
           <div className="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc">
@@ -109,8 +124,6 @@ export const getStaticProps = async ({ params: { slug }}) => {
   
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
-
-  console.log(product);
 
   return {
     props: { products, product }

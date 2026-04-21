@@ -17,7 +17,7 @@ const HeroBanner = ({ heroBanner }) => {
             <button type="button">{heroBanner.buttonText}</button>
           </Link>
           <div className="desc">
-            <h5>Immerse Yourself in Sound: Unleashing Sonic Excellence with Every Beat.</h5>
+            <h5>Immerse Yourself in Sound</h5>
             <p>{heroBanner.desc}</p>
           </div>
         </div>

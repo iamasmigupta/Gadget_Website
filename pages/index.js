@@ -1,14 +1,41 @@
 import React from 'react';
+import { BsHeadphones, BsShieldCheck, BsTruck } from 'react-icons/bs';
 
 import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
 
 const Home = ({ products, bannerData }) => (
   <div>
-    <HeroBanner heroBanner={bannerData.length && bannerData[0]}  />
+    <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
+    
+    {/* Trust Badges */}
+    <div className="trust-badges">
+      <div className="trust-badge">
+        <BsTruck className="trust-icon" />
+        <div>
+          <h4>Free Shipping</h4>
+          <p>On orders above &#8377;999</p>
+        </div>
+      </div>
+      <div className="trust-badge">
+        <BsShieldCheck className="trust-icon" />
+        <div>
+          <h4>1 Year Warranty</h4>
+          <p>Guaranteed quality</p>
+        </div>
+      </div>
+      <div className="trust-badge">
+        <BsHeadphones className="trust-icon" />
+        <div>
+          <h4>24/7 Support</h4>
+          <p>Expert assistance</p>
+        </div>
+      </div>
+    </div>
+
     <div className="products-heading">
       <h2>Best Seller Products</h2>
-      <p>speaker There are many variations passages</p>
+      <p>Discover our curated collection of premium audio gear</p>
     </div>
 
     <div className="products-container">
